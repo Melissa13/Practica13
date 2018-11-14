@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mensajeria.iml" filepath="$PROJECT_DIR$/.idea/modules/mensajeria.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mensajeria_main.iml" filepath="$PROJECT_DIR$/.idea/modules/mensajeria_main.iml" group="mensajeria" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mensajeria_test.iml" filepath="$PROJECT_DIR$/.idea/modules/mensajeria_test.iml" group="mensajeria" />
+    </modules>
+  </component>
+</project>
