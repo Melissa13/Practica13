@@ -1,6 +1,7 @@
 package main;
 
 import jms.Broker;
+import jms.CLiente2;
 import jms.Cliente1;
 import org.apache.activemq.broker.BrokerService;
 
@@ -26,6 +27,7 @@ public class Main {
         consumidor.conectar();
 
         new Cliente1().EnviarMensaje(cola);
+        new CLiente2().EnviarMensaje(cola);
 
         consumidor.cerrarConexion();
 

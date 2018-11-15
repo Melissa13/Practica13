@@ -59,7 +59,7 @@ public class Broker {
 
 
                     TextMessage messageTexto = (TextMessage) message;
-                    System.out.println("El mensaje de texto recibido: " + messageTexto.getText()+" - "+new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
+                    System.out.println("El mensaje de texto recibido: " + messageTexto.getText());
                 }catch(Exception ex){
                     ex.printStackTrace();
                 }

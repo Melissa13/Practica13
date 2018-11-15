@@ -44,16 +44,12 @@ public class Cliente1 {
 
         MessageProducer producer = session.createProducer(topic);
 
-        for (int i = 0; i < 5; i++) {
+        Data data = returnData();
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(data);
 
-            Data data = returnData();
-            ObjectMapper mapper = new ObjectMapper();
-            String json = mapper.writeValueAsString(data);
-
-            TextMessage message = session.createTextMessage(json);
-            producer.send(message);
-
-        }
+        TextMessage message = session.createTextMessage(json);
+        producer.send(message);
 
         producer.close();
         session.close();
