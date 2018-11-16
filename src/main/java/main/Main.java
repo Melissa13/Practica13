@@ -1,5 +1,7 @@
 package main;
 
+import DB.BootStrapService;
+import DB.DataService;
 import jms.Broker;
 import jms.CLiente2;
 import jms.Cliente1;
@@ -11,6 +13,8 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException, JMSException {
+
+        BootStrapService.getInstancia().init();
 
         String cola = "pruebajms.cola";
 
@@ -30,6 +34,8 @@ public class Main {
         new CLiente2().EnviarMensaje(cola);
 
         consumidor.cerrarConexion();
+
+        
 
 
 

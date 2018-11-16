@@ -1,5 +1,6 @@
 package jms;
 
+import DB.DataService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -46,7 +47,7 @@ public class CLiente2 {
         Data data = returnData();
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(data);
-
+        DataService.getInstancia().crear(data);
         TextMessage message = session.createTextMessage(json);
         producer.send(message);
 
@@ -60,7 +61,7 @@ public class CLiente2 {
     {
         Random r = new Random();
         Data data = new Data();
-        data.id = 2;
+        data.idcliente = 2;
         data.date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
         data.humedad = 10 + r.nextFloat() * (50 - 10);
         data.temperatura = 0 + r.nextFloat() * (65 - 0);

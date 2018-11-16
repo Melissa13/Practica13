@@ -12,21 +12,24 @@ public class Data {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String date; //new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
 
+    int idcliente;
+    String date; //new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
     float temperatura;
     float humedad;
 
     public Data() {
         this.date = date;
         this.id = id;
+        this.idcliente = idcliente;
         this.temperatura = temperatura;
         this.humedad = humedad;
     }
 
-    public Data(String date, int id, float temperatura, float humedad) {
+    public Data(String date, int id, int idcliente, float temperatura, float humedad) {
         this.date = date;
         this.id = id;
+        this.idcliente = idcliente;
         this.temperatura = temperatura;
         this.humedad = humedad;
     }
@@ -45,6 +48,14 @@ public class Data {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdcliente() {
+        return idcliente;
+    }
+
+    public void setIdcliente(int idcliente) {
+        this.idcliente = idcliente;
     }
 
     public float getTemperatura() {
