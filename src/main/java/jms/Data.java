@@ -1,12 +1,19 @@
 package jms;
 
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+@Entity
+@NamedQueries({@NamedQuery(name = "Data.findAllById", query = "select p from Data  p ORDER BY p.id DESC ")})
 public class Data {
 
-    String date; //new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    String date; //new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
+
     float temperatura;
     float humedad;
 
