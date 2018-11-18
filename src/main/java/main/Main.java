@@ -49,8 +49,16 @@ public class Main {
 
         Reciver consumidor=new Reciver(cola);
         consumidor.conectar();
+    }
 
-
+    public static void enviarMensaje(String mensaje) {
+        for (Session sesionConectada : Users) {
+            try {
+                sesionConectada.getRemote().sendString(mensaje);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
