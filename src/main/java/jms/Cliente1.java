@@ -9,6 +9,7 @@ import javax.jms.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Cliente1 {
 
@@ -30,7 +31,7 @@ public class Cliente1 {
      * @throws Exception
      */
 
-    public void EnviarMensaje(String cola) throws JMSException, JsonProcessingException {
+    public void EnviarMensaje(String cola) throws JMSException, JsonProcessingException, InterruptedException {
 
 
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
@@ -47,15 +48,19 @@ public class Cliente1 {
 
         Data data = returnData();
 
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(data);
-        DataService.getInstancia().crear(data);
-        TextMessage message = session.createTextMessage(json);
-        producer.send(message);
+        while(true)
+        {
+            TimeUnit.SECONDS.sleep(2);
+            ObjectMapper mapper = new ObjectMapper();
+            String json = mapper.writeValueAsString(data);
+            DataService.getInstancia().crear(data);
+            TextMessage message = session.createTextMessage(json);
+            producer.send(message);
+        }
 
-        producer.close();
-        session.close();
-        connection.stop();
+       // producer.close();
+       // session.close();
+       // connection.stop();
     }
 
     public Data returnData()
