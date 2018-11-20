@@ -1,14 +1,21 @@
 package main;
 
 import Services.Websockets;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import jms.Reciver;
+
 import freemarker.template.Configuration;
 import freemarker.template.Version;
-import jms.Reciver;
-import org.eclipse.jetty.websocket.api.Session;
-import spark.ModelAndView;
-import spark.template.freemarker.FreeMarkerEngine;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
+import spark.ModelAndView;
+import spark.Spark;
+import spark.template.freemarker.FreeMarkerEngine;
+
+
 import javax.jms.JMSException;
+
+import org.eclipse.jetty.websocket.api.Session;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +28,7 @@ public class Main {
 
     public static List<Session> Users = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException, JMSException, InterruptedException {
+    public static void main(String[] args) throws JMSException{
 
         staticFiles.location("/static");
 
@@ -42,7 +49,11 @@ public class Main {
         },freeMarkerEngine);
 
         Reciver consumidor=new Reciver(cola);
-        consumidor.conectar();
+        try {
+            consumidor.conectar();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void enviarMensaje(String mensaje) {
