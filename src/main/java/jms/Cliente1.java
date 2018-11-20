@@ -42,9 +42,10 @@ public class Cliente1 {
 
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-        Topic topic = session.createTopic(cola);
+//        Topic topic = session.createTopic(cola);
+        Queue queue = session.createQueue(cola);
 
-        MessageProducer producer = session.createProducer(topic);
+        MessageProducer producer = session.createProducer(queue);
 
         Data data;
 
@@ -52,9 +53,12 @@ public class Cliente1 {
         {
             data = returnData();
             TimeUnit.SECONDS.sleep(2);
+            //Haciendo la data JSON
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(data);
+            //Entrando a la base de datos
             DataService.getInstancia().crear(data);
+            //Mandando el mensaje
             TextMessage message = session.createTextMessage(json);
             producer.send(message);
         }

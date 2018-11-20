@@ -35,13 +35,13 @@ public class Reciver {
 
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-        topic = session.createTopic(cola);
+        //topic = session.createTopic(cola);
+        queue = session.createQueue(cola);
 
-        consumer = session.createConsumer(topic);
+        consumer = session.createConsumer(queue);
 
-        consumer.setMessageListener(new MessageListener() {
-            @Override
-            public void onMessage(Message message) {
+        consumer.setMessageListener(message ->  {
+
                 try {
                     TextMessage messageTexto = (TextMessage) message;
                     Main.enviarMensaje(messageTexto.getText());
@@ -49,7 +49,6 @@ public class Reciver {
                 }catch(Exception ex){
                     ex.printStackTrace();
                 }
-            }
         });
 
     }
