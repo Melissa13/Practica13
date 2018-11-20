@@ -46,10 +46,11 @@ public class Cliente1 {
 
         MessageProducer producer = session.createProducer(topic);
 
-        Data data = returnData();
+        Data data;
 
         while(true)
         {
+            data = returnData();
             TimeUnit.SECONDS.sleep(2);
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(data);

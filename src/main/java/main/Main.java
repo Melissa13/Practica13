@@ -1,17 +1,13 @@
 package main;
 
-import DB.BootStrapService;
 import Services.Websockets;
 import freemarker.template.Configuration;
 import freemarker.template.Version;
 import jms.Reciver;
-import jms.Cliente1;
-import org.apache.activemq.broker.BrokerService;
 import org.eclipse.jetty.websocket.api.Session;
-import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
-
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import javax.jms.JMSException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,9 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static spark.Spark.staticFiles;
-import static spark.Spark.webSocket;
-import static spark.Spark.get;
+import static spark.Spark.*;
 
 public class Main {
 
@@ -43,7 +37,7 @@ public class Main {
         get("/", (req, res) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-            return new ModelAndView(attributes, "index.ftl");
+            return new ModelAndView(attributes, "inicio.ftl");
 
         },freeMarkerEngine);
 
